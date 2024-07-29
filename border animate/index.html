@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            background-color: aliceblue;
+        }
+
+        .card {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            width: 500px;
+            height: 500px;
+            margin: 20px auto;
+            background-color: #f2f2f2;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            transition: transform 0.5s ease-in-out;
+            position: relative;
+        }
+
+        .card p {
+            text-align: center;
+            font-size: 20px;
+            font-weight: 600;
+            font-variant: small-caps;
+        }
+
+        .card button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        @property --angle {
+            syntax: "<angle>";
+            initial-value: 0deg;
+            inherits: false;
+        }
+
+
+        .card::after,
+        .card::before {
+            --angle: 0deg;
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            /* background-image: conic-gradient(red, blue, yellow, green); */
+            /* background-image: conic-gradient(from 180deg, transparent 70%, blue); */
+            background-image: conic-gradient(from var(--angle), transparent 70%, blue);
+            /* background-blend-mode: multiply; */
+            z-index: -1;
+            padding: 3px;
+            border-radius: 10px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation: 3s spin linear infinite;
+        }
+
+        .card::before {
+            filter: blur(1.5rem);
+            opacity: .3;
+        }
+
+        @keyframes spin {
+            from {
+                --angle: 0deg;
+
+            }
+
+            to {
+                --angle: 360deg;
+
+            }
+
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="card">
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt, inventore. Eos commodi saepe non itaque
+            rerum culpa, illo placeat voluptas voluptatum porro et necessitatibus sed? Ipsa quia iure quod expedita!</p>
+        <button>Explore Now</button>
+    </div>
+</body>
+
+</html>
